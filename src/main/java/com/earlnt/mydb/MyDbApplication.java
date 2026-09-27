@@ -1,5 +1,6 @@
 package com.earlnt.mydb;
 
+import com.earlnt.mydb.entities.Addresses;
 import com.earlnt.mydb.entities.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +17,15 @@ public class MyDbApplication {
                 .email("john@example.com")
                 .password("password")
                 .build();
+
+        var addresses = Addresses.builder()
+                .id(1L)
+                .street("123 Main St")
+                .city("Anytown")
+                .state("CA")
+                .zipCode("12345")
+                .build();
+
     }
 
 }
