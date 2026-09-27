@@ -1,5 +1,4 @@
 package com.earlnt.mydb.entities;
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,5 +22,4 @@ public class User {
 
     @Column(name = "password", nullable = false)
     private String password;
-
 }

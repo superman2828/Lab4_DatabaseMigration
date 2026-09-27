@@ -1,5 +1,4 @@
 package com.earlnt.mydb.entities;
-
 import jakarta.persistence.*;
 import lombok.*;
 

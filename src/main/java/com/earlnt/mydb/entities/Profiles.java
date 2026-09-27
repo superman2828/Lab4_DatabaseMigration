@@ -1,8 +1,6 @@
 package com.earlnt.mydb.entities;
-
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.Date;
 
 @Builder
@@ -28,5 +26,4 @@ public class Profiles {
 
     @Column(name = "loyalty_points")
     private Integer loyaltyPoints;
-
 }
