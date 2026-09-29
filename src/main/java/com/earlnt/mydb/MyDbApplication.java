@@ -25,7 +25,9 @@ public class MyDbApplication {
                 .state("CA")
                 .zipCode("12345")
                 .build();
+        user.addAddress(addresses);
 
+        System.out.println(user);
     }
 
 }

@@ -2,6 +2,7 @@ package com.earlnt.mydb.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+@ToString
 @Builder
 @Entity
 @Table(name = "addresses")
@@ -25,4 +26,9 @@ public class Addresses {
 
     @Column(name = "zip", nullable = false)
     private String zipCode;
+
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 }

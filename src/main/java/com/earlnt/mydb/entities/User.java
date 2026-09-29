@@ -1,8 +1,14 @@
 package com.earlnt.mydb.entities;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.context.annotation.Profile;
 
-@Data
+import java.util.ArrayList;
+import java.util.List;
+
+@ToString
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -22,4 +28,21 @@ public class User {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    @Builder.Default
+    private List<Addresses> addresses = new ArrayList<>();
+
+    @OneToOne(mappedBy = "user")
+    private Profiles profiles;
+
+    public void addAddress(Addresses address) {
+        addresses.add(address);
+        address.setUser(this);
+    }
+
+    public void removeAddress(Addresses address) {
+        addresses.remove(address);
+        address.setUser(null);
+    }
 }
