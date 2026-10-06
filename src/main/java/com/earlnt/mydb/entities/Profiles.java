@@ -16,10 +16,10 @@ public class Profiles {
     private Long id;
 
     @Column(name = "bio")
-    private String firstName;
+    private String bio;
 
     @Column(name = "phone_number")
-    private String lastName;
+    private String phoneNumber;
 
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
@@ -27,7 +27,7 @@ public class Profiles {
     @Column(name = "loyalty_points")
     private Integer loyaltyPoints;
 
-    @OneToOne
+    @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "id")
     @MapsId
     private User user;
