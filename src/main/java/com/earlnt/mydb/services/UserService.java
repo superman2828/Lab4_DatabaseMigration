@@ -1,5 +1,6 @@
 package com.earlnt.mydb.services;
 
+import com.earlnt.mydb.entities.Addresses;
 import com.earlnt.mydb.entities.User;
 import com.earlnt.mydb.repositories.ProfilesRepository;
 import com.earlnt.mydb.repositories.UserRepository;
@@ -42,5 +43,33 @@ public class UserService {
 
         var profile = profilesRepository.findById(2L).orElseThrow();
         System.out.println(profile.getUser().getEmail());
+    }
+
+    public void PersistRelated(){
+        var user = User.builder()
+                .name("Mike Smith")
+                .email("mike.smith@example.com")
+                .password("password")
+                .build();
+
+        var address = Addresses.builder()
+                .street("123 Main St")
+                .city("Anytown")
+                .state("CA")
+                .zipCode("12345")
+                .user(user)
+                .build();
+
+        user.addAddress(address);
+        userRepository.save(user);
+    }
+
+    @Transactional
+    public void deleteRelated(){
+        //userRepository.deleteById(7L);
+        var user = userRepository.findById(7L).orElseThrow();
+        var address = user.getAddresses().getFirst();
+        user.removeAddress(address);
+        userRepository.save(user);
     }
 }

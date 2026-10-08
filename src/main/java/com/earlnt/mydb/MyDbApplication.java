@@ -17,7 +17,9 @@ public class MyDbApplication {
         // var repository = context.getBean(UserRepository.class);
         var service = context.getBean(UserService.class);
         //service.showEntityState();
-        service.showRelatedEntities();
+        //service.showRelatedEntities();
+
+        //service.deleteRelated();
         /*var user = User.builder()
                 //.id(1L)
                 .name("John")
