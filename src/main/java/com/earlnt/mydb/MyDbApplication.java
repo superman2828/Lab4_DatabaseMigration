@@ -3,6 +3,7 @@ package com.earlnt.mydb;
 import com.earlnt.mydb.entities.Addresses;
 import com.earlnt.mydb.entities.User;
 import com.earlnt.mydb.repositories.UserRepository;
+import com.earlnt.mydb.services.ProductService;
 import com.earlnt.mydb.services.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,11 +16,11 @@ public class MyDbApplication {
 
         ApplicationContext context = SpringApplication.run(MyDbApplication.class, args);
         // var repository = context.getBean(UserRepository.class);
-        var service = context.getBean(UserService.class);
-        //service.showEntityState();
+        var service = context.getBean(ProductService.class);
+        //service.newCategory();
+        //service.existingCategory();
+        service.deleteRelated();
         //service.showRelatedEntities();
-
-        //service.deleteRelated();
         /*var user = User.builder()
                 //.id(1L)
                 .name("John")
