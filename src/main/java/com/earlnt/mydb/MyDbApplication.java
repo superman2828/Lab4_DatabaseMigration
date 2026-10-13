@@ -19,7 +19,7 @@ public class MyDbApplication {
         var service = context.getBean(ProductService.class);
         //service.newCategory();
         //service.existingCategory();
-        service.deleteRelated();
+        //service.deleteRelated();
         //service.showRelatedEntities();
         /*var user = User.builder()
                 //.id(1L)
