@@ -1,4 +1,5 @@
 package com.earlnt.mydb.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,6 +29,7 @@ public class Addresses {
     private String zipCode;
 
     @ToString.Exclude
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;

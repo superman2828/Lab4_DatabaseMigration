@@ -1,4 +1,5 @@
 package com.earlnt.mydb.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.context.annotation.Profile;

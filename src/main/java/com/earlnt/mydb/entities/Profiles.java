@@ -1,4 +1,5 @@
 package com.earlnt.mydb.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Date;
@@ -27,6 +28,8 @@ public class Profiles {
     @Column(name = "loyalty_points")
     private Integer loyaltyPoints;
 
+    @ToString.Exclude
+    @JsonIgnore
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "id")
     @MapsId
