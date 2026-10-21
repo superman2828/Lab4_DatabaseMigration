@@ -52,5 +52,4 @@ public class ProductService {
         var product = productRepository.findById(2L).orElseThrow();
         productRepository.delete(product);
     }
-
 }

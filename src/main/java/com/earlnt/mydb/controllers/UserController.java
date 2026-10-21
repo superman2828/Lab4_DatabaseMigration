@@ -1,12 +1,13 @@
 package com.earlnt.mydb.controllers;
 
+import com.earlnt.mydb.dtos.UserDto;
 import com.earlnt.mydb.entities.User;
+import com.earlnt.mydb.mappers.UserMapper;
 import com.earlnt.mydb.repositories.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,15 +18,26 @@ import java.util.List;
 public class UserController {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @GetMapping()
-    public Iterable<User> getAllUsers() {
-        return userRepository.findAll();
+    public Iterable<UserDto> getAllUsers(
+            @RequestHeader(name = "x-auth-token", required = false) String authToken,
+            @RequestParam(required = false, defaultValue = "name") String sort) {
+        System.out.println("Auth Token: " + authToken);
+        return userRepository.findAll(Sort.by(sort)).stream()
+                .map(user -> userMapper.toDto(user))
+                .toList();
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable Long id) {
-        return userRepository.findById(id).orElse(null);
+    public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
+        var user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        //var userDto = new UserDto(user.getId(), user.getName(), user.getEmail());
+        return ResponseEntity.ok(userMapper.toDto(user));
     }
 }
 
